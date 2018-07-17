@@ -1,0 +1,7 @@
+---
+lxd::ensure: installed
+lxd::package_ensure: latest
+lxd::service_ensure: running
+lxd::service_enable: true
+
+

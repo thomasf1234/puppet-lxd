@@ -1,0 +1,21 @@
+{
+  "name": "puppet-lxd",
+  "version": "0.1.0",
+  "author": "thomasf1234",
+  "summary": "Puppet module to manage LXD",
+  "license": "Apache-2.0",
+  "source": "https://github.com/thomasf1234/puppet-lxd",
+  "project_page": "https://github.com/thomasf1234/puppet-lxd",
+  "issues_url": "https://github.com/thomasf1234/puppet-lxd/issues",
+  "dependencies": [
+
+  ],
+  "data_provider": null,
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=5.5.3"
+    }
+  ]
+}
+
