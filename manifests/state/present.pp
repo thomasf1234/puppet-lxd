@@ -8,12 +8,34 @@ class lxd::state::present {
     require => Package['zfsutils-linux']
   }
 
+  package {'lxd-client':
+    ensure  => 'latest'
+  }
+
   group {'lxd':
     ensure => 'present'
   }
 
   service { 'lxd':
-    ensure => $service_ensure,
-    enable => $service_enable
+    ensure  => $service_ensure,
+    enable  => $service_enable,
+    require => Package['lxd']
+  }
+
+  include lxd::config
+  
+  class { 'lxd::networks' :
+    require => Class['lxd::config']
+  }
+
+  class { 'lxd::storage_pools' :
+    require => Class['lxd::config']
+  }
+
+  class { 'lxd::profiles' :
+    require => [
+      Class['lxd::networks'],
+      Class['lxd::storage_pools']
+    ]
   }
 }

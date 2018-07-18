@@ -1,6 +1,6 @@
 require 'lxd-client'
 
-Puppet::Type.newtype(:lxd_profile) do
+Puppet::Type.newtype(:lxd_storage_pool) do
     desc <<-DESC
   Native type for managing LXD profiles
   
@@ -41,21 +41,12 @@ Puppet::Type.newtype(:lxd_profile) do
   autorequire(:service) { 'lxd' }
   
   newparam(:name, namevar: true) do
-    desc 'The name of the profile'
+    desc 'The name of the storage_pool'
     newvalues(%r{^\S+$})
   end
 
-  newproperty(:description) do
-    desc 'The description of the profile'
-    newvalues(/.*/)
-  end
-
-  newproperty(:used_by) do
-    desc 'The used_by of the profile'
-  end
-
   newproperty(:config) do
-    desc 'The config of the profile'
+    desc 'The storage_pool config'
     validate do |value| 
       unless value.kind_of?(Hash)
          raise ArgumentError.new("config must be a hash")
@@ -63,13 +54,27 @@ Puppet::Type.newtype(:lxd_profile) do
     end
   end
 
-  newproperty(:devices) do
-    desc 'The devices of the profile'
-    validate do |value| 
-      unless value.kind_of?(Hash)
-         raise ArgumentError.new("devices must be a hash")
-      end 
-    end
+  newproperty(:description) do
+    desc 'The description of the profile'
+    newvalues(/.*/)
+  end
+
+  newproperty(:driver) do
+    desc 'The driver'
+    newvalues(/.+/)
+  end
+
+  newproperty(:locations, array_matching: :all) do
+    desc 'The locations'
+  end
+
+  newproperty(:status) do
+    desc 'The status of the profile'
+    newvalues(/.*/)
+  end
+
+  newproperty(:used_by) do
+    desc 'The used_by of the storage_pool'
   end
 end
   

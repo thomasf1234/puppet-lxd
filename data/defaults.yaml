@@ -1,7 +1,48 @@
 ---
-lxd::ensure: installed
+lxd::ensure: present
 lxd::package_ensure: latest
 lxd::service_ensure: running
 lxd::service_enable: true
 
+lxd::config: {}
+
+lxd::cluster: null
+
+lxd::networks:
+  lxdbr0:
+    ensure: present
+    config:
+      ipv4.address: "auto"
+      ipv4.nat: "true"
+      ipv6.address: "auto"
+      ipv6.nat: "true"
+    description: ""
+    managed: false
+    type: "bridge"
+
+lxd::storage_pools:
+  default:
+    ensure: present
+    config:
+      size: 1GB
+      source: '/var/lib/lxd/disks/default.img'
+      zfs.pool_name: 'default'
+    description: ""
+    driver: zfs
+
+lxd::profiles:
+  default:
+    ensure: present
+    config: {}
+    description: ""
+    devices:
+      eth0:
+        name: eth0
+        nictype: bridged
+        parent: lxdbr0
+        type: nic
+      root:
+        path: /
+        pool: default
+        type: disk
 

@@ -3,16 +3,26 @@ class lxd::state::absent {
     ensure => 'stopped',
     enable => false
   }
+  
   package {'lxd':
     ensure  => 'purged',
     require => Service['lxd']
   }
 
-  package {'zfsutils-linux':
-    ensure => 'latest'
+  package {'lxd-client':
+    ensure  => 'purged',
+    require => Package['lxd']
   }
 
   group {'lxd':
-    ensure => 'absent'
+    ensure => 'absent',
+    require => Package['lxd']
+  }
+
+  file { '/var/lib/lxd' :
+    ensure  => 'absent',
+    force   => true,
+    backup  => false,
+    require => Package['lxd']
   }
 }

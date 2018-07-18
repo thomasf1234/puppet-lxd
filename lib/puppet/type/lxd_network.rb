@@ -49,7 +49,7 @@ Puppet::Type.newtype(:lxd_network) do
 
   newproperty(:description) do
     desc 'The description of the network'
-    newvalues(/.+/)
+    newvalues(/.*/)
   end
 
   newproperty(:type) do
@@ -72,7 +72,7 @@ Puppet::Type.newtype(:lxd_network) do
 
   newproperty(:status) do
     desc 'The status of the interface'
-    newvalues(/.+/)
+    newvalues(/.*/)
   end
 
   newproperty(:locations, array_matching: :all) do

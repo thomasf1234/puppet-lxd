@@ -6,8 +6,8 @@ defaults:  # Used for any hierarchy level that omits these keys.
   data_hash: yaml_data  # Use the built-in YAML backend.
 
 hierarchy:
-  - name: "Module Main Global Settings"
-    path: "main/globals.yaml"
-  - name: "Module Main Default Settings"
-    path: "main/defaults.yaml"
+  - name: "Module Global Settings"
+    path: "globals.yaml"
+  - name: "Module Default Settings"
+    path: "defaults.yaml"
 

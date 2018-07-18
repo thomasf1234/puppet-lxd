@@ -1,4 +1,3 @@
-require 'pry'
 require 'lxd-client'
 
 Puppet::Type.type(:lxd_network).provide(:lxd_client) do 

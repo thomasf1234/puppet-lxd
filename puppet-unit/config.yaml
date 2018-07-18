@@ -1,0 +1,15 @@
+---
+module_name: lxd
+order: rand
+libvirt:
+  connect_uri: "qemu:///system"
+  domains:
+    tst-ub16:
+      network: "default"
+      snapshot: "test_base"
+      ssh_user: "deploy"
+      ssh_identity_file: "~/.ssh/deploy.id_rsa"
+
+
+
+
