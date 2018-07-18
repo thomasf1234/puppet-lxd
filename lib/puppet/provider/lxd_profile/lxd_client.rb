@@ -1,3 +1,4 @@
+require 'pry'
 require 'lxd-client'
 
 Puppet::Type.type(:lxd_profile).provide(:lxd_client) do 
@@ -5,7 +6,7 @@ Puppet::Type.type(:lxd_profile).provide(:lxd_client) do
 
   def initialize(value = {})
     super(value)
-    @lxc = LxdClient::Service.new
+    @lxc = LxdClient::Service.new(Facter.value(:lxd)['socket'])
   end
 
   def self.instances

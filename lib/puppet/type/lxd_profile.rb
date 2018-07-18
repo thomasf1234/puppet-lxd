@@ -23,8 +23,7 @@ Puppet::Type.newtype(:lxd_profile) do
           'pool' => 'default',
           'type' => 'disk'
         }
-      },
-      used_by     => ['/1.0/containers/testbuild-ub18'],
+      }
     }
   DESC
   
@@ -52,12 +51,7 @@ Puppet::Type.newtype(:lxd_profile) do
   end
 
   newproperty(:used_by) do
-    desc 'The descirption of the profile'
-    validate do |value| 
-      unless value.kind_of?(Array)
-         raise ArgumentError.new("used_by must be an array")
-      end 
-    end
+    desc 'The used_by of the profile'
   end
 
   newproperty(:config) do
