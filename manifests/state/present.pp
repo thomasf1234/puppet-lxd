@@ -22,20 +22,20 @@ class lxd::state::present {
     require => Package['lxd']
   }
 
-  include lxd::config
+  # include lxd::config
   
-  class { 'lxd::networks' :
-    require => Class['lxd::config']
-  }
+  # class { 'lxd::networks' :
+  #   require => Class['lxd::config']
+  # }
 
-  class { 'lxd::storage_pools' :
-    require => Class['lxd::config']
-  }
+  # class { 'lxd::storage_pools' :
+  #   require => Class['lxd::config']
+  # }
 
-  class { 'lxd::profiles' :
-    require => [
-      Class['lxd::networks'],
-      Class['lxd::storage_pools']
-    ]
-  }
+  # class { 'lxd::profiles' :
+  #   require => [
+  #     Class['lxd::networks'],
+  #     Class['lxd::storage_pools']
+  #   ]
+  # }
 }
